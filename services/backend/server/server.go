@@ -33,3 +33,17 @@ func (s *Server) Start(database *sql.DB, hub *livechat.Hub) {
 	log.Println("Server is listening on port 8080...")
 	http.ListenAndServe(":8080", nil)
 }
+
+//TODO FOR SSL ?
+
+// tlsConf, err := config.SSL_Setup()
+// 	fmt.Println(err)
+// 	srv := &http.Server{
+// 		Addr:         ":8080",
+// 		ReadTimeout:  5 * time.Second,
+// 		WriteTimeout: 10 * time.Second,
+// 		IdleTimeout:  15 * time.Second,
+// 		TLSConfig:    tlsConf,
+// 		TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
+// 	}
+// 	srv.ListenAndServeTLS("", "")
