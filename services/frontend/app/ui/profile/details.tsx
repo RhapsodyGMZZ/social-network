@@ -18,7 +18,7 @@ export default async function Details({ param }: { param?: Param }) {
 
   return (
     <>
-      <div className="flex flex-col items-center font-bold bg-white p-4 rounded-lg shadow-xl text-center divide-y divide-dashed divide-black w-full mb-8 md:w-[400px] ">
+      <div className="flex flex-col items-center font-bold bg-white p-4 rounded-lg shadow-xl text-center divide-y divide-dashed divide-black mb-8 w-full md:w-[400px] lg:w-full ">
         <Image
           src={param?.user ? `${CADDY_URL}/avatar?id=${param?.user}` : session?.user?.picture}
           alt="Profile Picture"
@@ -59,7 +59,7 @@ export default async function Details({ param }: { param?: Param }) {
           </div>
         </div>
         {user?.about && (
-          <h3 className="font-bold p-5 break-words">
+          <h3 className="font-bold p-5 break-all">
             About: <p className="text-purple-700">{user?.about}</p>
           </h3>
         )}

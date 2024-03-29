@@ -35,7 +35,8 @@ const registerFormSchema = z.object({
   }),
   nickname: z.string().optional(),
   about: z.string().optional(),
-  avatar: z.custom((v) => v instanceof File && v.size < 20000, {
+  //REMIND 10Mb max
+  avatar: z.custom((v) => v instanceof File && v.size < 100000, {
     message: "Invalid file or file size too large",
   }).optional(),
 }).refine((data) => data.password === data.confirmation, {

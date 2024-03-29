@@ -125,7 +125,8 @@ export default function Chat({ user, followers, followed, followerUUIDS }: { use
 
 
   useEffect(() => {
-    let sc = new WebSocket("ws://localhost:8000/api/ws");
+    let sc = new WebSocket("ws://45.147.98.213:8000/api/ws");
+    // let sc = new WebSocket("ws://localhost:8000/api/ws");
     sc.onopen = (event) => {
       console.log("WebSocket connection opened");
       sc.send(userUuid ?? "");
