@@ -31,6 +31,24 @@ func (s *Server) Start(database *sql.DB, hub *livechat.Hub) {
 	s.app.ServeHTTP(database)
 
 	log.Println("Server is listening on port 8080...")
+	// Enable CORS (Cross-Origin Resource Sharing) middleware
+	cors := func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, POST")
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+			if r.Method == "GET" || r.Method == "POST" {
+				w.WriteHeader(http.StatusOK)
+				return
+			}
+
+			next.ServeHTTP(w, r)
+		})
+	}
+
+	// Add CORS middleware to the server
+	http.Handle("/", cors(http.DefaultServeMux))
 	http.ListenAndServe(":8080", nil)
 }
 
